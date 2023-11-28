@@ -1,54 +1,37 @@
-# Create Virtual Python Environment
-Python applications import multiple libraries, and oftentimes, conflicts can occur between different versions of required libraries.  However your app may require a specific library version due to a bug fix.  The solution is to create a virtual environment, a self-contained suite of libraries for a specific Python installation.
-
-We will use Python's built-in virtual environment functionality which was introduced in Python version 3.3 and provides [a built-in environments module called venv](https://docs.python.org/3/tutorial/venv.html).  You may be asking why we aren't using Conda.  The reason is that [Conda/Miniconda is now on IBM's "do-not-use" list](https://w3.ibm.com/w3publisher/ossc-process/exception-and-do-not-use) because of use of the Anaconda repo.
-
-While creating your virtual Python environment below, you will also be installing all the libraries required to complete this Boot Camp including Jupyter Notebooks, the Watson Machine Learning Python SDK, Hugging Face libraries, ChromaDB and LangChain.
-
-#### Upgrade to Python v3.11 to Avoid Any Conflicts
-Upgrading Python versions can be complicated so don't be afraid to ask for help during this process.  We have documented best practices to assist you.  You may have no issues using Python 3.8 plus, but recall that even Python 3.9 is 2.5 years old.  [Follow these best practices to upgrade to Python 3.11](upgrade-python.md).
-
-#### Create your Python virtual environment
-Create a folder where you will create and store your Python virtual environment.  Then open a terminal/console window and enter the commands below to create a Python environment called `venv`. The new virtual environment will result in a local directory by the same name.
+# 가상환경 만들기
+### Python 설치
+homebrew를 활용하여 Python을 설치하고 관리해보겠습니다.  
+##### 아래 명령어를 차례대로 입력하세요:
 ```
-cd <directory to store your Python environment>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+brew install python@3.11
+brew install git
+```
+설치가 되었다면, [교육자료](https://github.com/Yupjun/watsonx-incubation-program-Korea)를 다운로드 받고 해당 경로로 이동합니다.  
+###### 아래 명령어를 차례대로 입력하세요:
+```
+git clone https://github.com/Yupjun/watsonx-incubation-program-Korea
+cd watsonx-incubation-program-Korea
 python -m venv .venv
+
 ```
 
-#### Download requirements_venv.txt
-Download [requirements_venv.txt](./requirements_venv.txt) which contains the list of initial packages to install in your environment. Move the requirements.txt file to the folder that you created for your Python environments before running commands. Note that the requirements file should already be downloaded from cloning your repository earlier!
-
-#### Activate your Python virtual environment
-Execute these commands:
+#### 가상환경을 실행하여 가상환경 안으로 들어갑니다
+##### 아래 명령어를 차례대로 입력하세요:
 ```
 source .venv/bin/activate
 python -m pip install -r requirements_venv.txt
 ```
+터미널 옆에 (venv) 라는 형태로 표시가 되어 있다면, 제대로 진행된 것입니다.
 
-You can validate that your environment is active by looking at the start of the prompt line in your terminal/console window.  As shown below, the start of the prompt changes to show (venv).
+#### 주피터 노트북을 실행하여 테스트합니다.
+이제 주피터 노트북을 실행하고, lab-0-laptop-environment-setup에 있는 environment-test.ipynb를 실행하여   
+모든 패키지가 제대로 작동하는지 확인합니다. Cloud 환경 세팅의 경우 [링크](./Setting-up-Python-Virtual-Environment-in-Windows.pdf) 내 Cloud 환경 세팅 란을 참고하여 진행해주세요
+##### 아래 명령어를 차례대로 입력하세요:
+```
+jupyter notebook
+```
+#### jupyter notebook에서의 테스트가 끝났다면, [다음링크](https://docs.docker.com/desktop/install/mac-install/)를 통해 Docker를 설치합니다.
 
-<p align="left">
-  <img src="images/environment-activated-python.png" width="500"/>
-</p>
-
-Note: If you are a Windows user, instead of running the command `source .venv/bin/activate`, follow the steps in [Setting-up-Python-Virtual-Environment-in-Windows.docx](./Setting-up-Python-Virtual-Environment-in-Windows.docx). 
-
-Note: If you do not have an M1 chip, you might get an error along the lines of:
-```
-× Building wheel for chroma-hnswlib (pyproject.toml) did not run successfully.
-```
-If so, try one of these two solutions, replacing `python -m pip install -r requirements_venv.txt` with
-```
-export HNSWLIB_NO_NATIVE=1
-python -m pip install -r requirements_venv.txt
-```
-or
-```
-ARCHFLAGS="-arch x86_64" python -m pip install -r requirements_venv.txt
-```
-
-#### Dectivate your Python virtual environment
-If you need to change to a different environment, you can deactivate your current environment using the command below:
-```
-deactivate
-```
+# 끝
