@@ -23,7 +23,7 @@ from langchain.embeddings import (HuggingFaceHubEmbeddings,
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import FAISS, Chroma
 from PIL import Image
-from googletrans import Translator
+# rom googletrans import Translator
 import requests
 
 from langChainInterface import LangChainInterface
@@ -222,28 +222,28 @@ def translate_large_text(text, translate_function, choice, max_length=500):
     return full_translated_text
 
 
-def translate_to_kor(sentence: str, choice: bool) -> str:
-    """
-    Translate the text between English and Bahasa based on the 'choice' flag.
+# def translate_to_kor(sentence: str, choice: bool) -> str:
+#     """
+#     Translate the text between English and Bahasa based on the 'choice' flag.
     
-    Args:
-        sentence (str): The text to translate.
-        choice (bool): If True, translates text to Bahasa. If False, translates to English.
-    Returns:
-        str: The translated text.
-    """
-    translator = Translator()
-    try:
-        if choice:
-            # Translate to Bahasa
-            translate = translator.translate(sentence, dest='ko')
-        else:
-            # Translate to English
-            translate = translator.translate(sentence, dest='en')
-        return translate.text
-    except Exception as e:
-        # Handle translation-related issues (e.g., network error, unexpected API response)
-        raise ValueError(f"Translation failed: {str(e)}") from e
+#     Args:
+#         sentence (str): The text to translate.
+#         choice (bool): If True, translates text to Bahasa. If False, translates to English.
+#     Returns:
+#         str: The translated text.
+#     """
+#     translator = Translator()
+#     try:
+#         if choice:
+#             # Translate to Bahasa
+#             translate = translator.translate(sentence, dest='ko')
+#         else:
+#             # Translate to English
+#             translate = translator.translate(sentence, dest='en')
+#         return translate.text
+#     except Exception as e:
+#         # Handle translation-related issues (e.g., network error, unexpected API response)
+#         raise ValueError(f"Translation failed: {str(e)}") from e
 
 @st.cache_data
 def read_pdf(uploaded_files, chunk_size=250, chunk_overlap=20):
@@ -265,7 +265,7 @@ def read_pdf(uploaded_files, chunk_size=250, chunk_overlap=20):
                     content = doc.page_content
 
                     # Translate the content
-                    translated_content = translate_large_text(content, translate_to_kor, False)
+                    translated_content = content# translate_large_text(content, translate_to_kor, False)
 
                     # Replace original content with translated content
                     doc.page_content = translated_content
@@ -352,7 +352,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
                 if "<|endoftext|>" in response:
                     response = response.replace("<|endoftext|>", "")
 
-                response = translate_to_kor(response, True)
+                response = response# translate_to_kor(response, True)
                 print(f"{response}\n")
 
             except NameError:

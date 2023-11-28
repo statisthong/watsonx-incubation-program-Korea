@@ -7,7 +7,7 @@ from ibm_watson_machine_learning.foundation_models.utils.enums import ModelTypes
 from langchain.callbacks import StdOutCallbackHandler
 from langchain.chains.question_answering import load_qa_chain
 from PIL import Image
-from googletrans import Translator
+# from googletrans import Translator
 
 from langChainInterface import LangChainInterface
 
@@ -112,28 +112,28 @@ else:
             GenParams.STOP_SEQUENCES: [" # ", " ** " ," * ", "<|endoftext|>", "--"],
         }
 
-def translate_to_kor(sentence: str, choice: bool) -> str:
-    """
-    Translate the text between English and Bahasa based on the 'choice' flag.
+# def translate_to_kor(sentence: str, choice: bool) -> str:
+#     """
+#     Translate the text between English and Bahasa based on the 'choice' flag.
     
-    Args:
-        sentence (str): The text to translate.
-        choice (bool): If True, translates text to Bahasa. If False, translates to English.
-    Returns:
-        str: The translated text.
-    """
-    translator = Translator()
-    try:
-        if choice:
-            # Translate to Korea
-            translate = translator.translate(sentence, dest='ko')
-        else:
-            # Translate to English
-            translate = translator.translate(sentence, dest='en')
-        return translate.text
-    except Exception as e:
-        # Handle translation-related issues (e.g., network error, unexpected API response)
-        raise ValueError(f"Translation failed: {str(e)}") from e
+#     Args:
+#         sentence (str): The text to translate.
+#         choice (bool): If True, translates text to Bahasa. If False, translates to English.
+#     Returns:
+#         str: The translated text.
+#     """
+#     translator = Translator()
+#     try:
+#         if choice:
+#             # Translate to Korea
+#             translate = translator.translate(sentence, dest='ko')
+#         else:
+#             # Translate to English
+#             translate = translator.translate(sentence, dest='en')
+#         return translate.text
+#     except Exception as e:
+#         # Handle translation-related issues (e.g., network error, unexpected API response)
+#         raise ValueError(f"Translation failed: {str(e)}") from e
 
 def milvus_search(query):
     model_name = 'all-MiniLM-L6-v2'
@@ -177,7 +177,7 @@ if user_question := st.chat_input("Send a message...", key="prompt"):
         st.write(user_question)
 
     print(f"\n{user_question}\n")
-    translated_user_input =  translate_to_kor(user_question, False)
+    translated_user_input =  user_question # translate_to_kor(user_question, False)
     print(f"{translated_user_input}\n")
 
 
@@ -197,7 +197,7 @@ if st.session_state.messages[-1]["role"] != "assistant":
             if "<|endoftext|>" in response:
                 response = response.replace("<|endoftext|>", "")
 
-            response = translate_to_kor(response, True)
+            response = response # translate_to_kor(response, True)
             print(f"{response}\n")
 
             placeholder = st.empty()
