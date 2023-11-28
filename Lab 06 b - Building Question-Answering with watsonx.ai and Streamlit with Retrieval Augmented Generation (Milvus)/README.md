@@ -9,7 +9,7 @@
 4. 설치된 도커 버전이 19.0 보다 높은지 확인합니다. (cmd: docker -v)
 5. Lab 6b 내 milvus directory 로 이동합니다(cd milvus). 그리고 다음 명령어를 입력하세요 "sudo docker-compose -f docker-compose.yml up"
 6. http://localhost:8000/ 에 접속해서 milvus가 로드 되었는지 확인하세요
-7.  wikihow.csv 파일을 다음 링크를 클릭하여 다운로드 받으세요 "[https://ibm.box.com/s/8nvanf974t35d89cmibk75e3gc6d1pbo](https://ibm.box.com/s/8nvanf974t35d89cmibk75e3gc6d1pbo)"  since the file is quite huge (1.2 GB) # TOBECHANGED
+7.  wikihow.csv 파일을 다음 링크를 클릭하여 다운로드 받으세요 [LINK](https://ibm.box.com/s/78co9fp2ipws5x68jjldgnr29bk9xppn)  
 8. milvus-demo.ipynb 를 차례대로 실행하여 wikihow.csv 파일을 milvus db에 로드하세요
 9. collections, Entities 내 데이터가 있는지 확인합니다.
 10. `streamlit run app.py`을 실행합니다.
