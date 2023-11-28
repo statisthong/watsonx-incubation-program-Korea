@@ -145,8 +145,7 @@ def get_prompt_template(system_prompt=system_prompt, history=False):
     document_with_metadata_prompt = PromptTemplate(
         input_variables=["page_content"],
         template="\nDocument: {page_content}\n\t",
-    )
-    
+    ) 
     if history:
         instruction = """
         Context: {history} \n {summaries}

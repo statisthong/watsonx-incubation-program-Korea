@@ -1,5 +1,4 @@
 #Model Knowledge
-
 question_answer_id = """
 질문: 
 주주총회에 대해서 설명해주세요
