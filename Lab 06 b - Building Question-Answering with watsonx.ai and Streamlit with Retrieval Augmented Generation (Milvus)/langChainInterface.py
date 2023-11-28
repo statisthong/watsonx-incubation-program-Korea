@@ -5,6 +5,7 @@ from langchain.llms.base import LLM
 from ibm_watson_machine_learning.foundation_models import Model
 from langchain.llms.utils import enforce_stop_tokens
 
+
 # define LangChainInterface model
 class LangChainInterface(LLM, BaseModel):
 
